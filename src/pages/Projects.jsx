@@ -99,7 +99,7 @@ function ProjectModal({ p, onClose, lang }) {
   const isMobile = p.mockupType === "android";
   const paras = [localized(p, "modalP1", lang), localized(p, "modalP2", lang), localized(p, "modalP3", lang)].filter(Boolean);
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}
+    <motion.div data-lenis-prevent initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}
       style={{ position: "fixed", inset: 0, zIndex: 1000, background: "rgba(22,20,15,0.5)", backdropFilter: "blur(8px)", display: "flex", alignItems: "flex-start", justifyContent: "center", padding: "clamp(16px,4vh,60px) 16px", overflowY: "auto" }}>
       <motion.div initial={{ y: 40, opacity: 0, scale: 0.98 }} animate={{ y: 0, opacity: 1, scale: 1 }} exit={{ y: 30, opacity: 0 }} transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         onClick={(e) => e.stopPropagation()}
