@@ -12,8 +12,9 @@ import ponyinImg from "../assets/Ponyin.png";
 import mobileImg from "../assets/Mobile.png";
 import desktopImg from "../assets/Dekstop.png";
 import hackatonImg from "../assets/Hackaton.jpg";
+import stumbleImg from "../assets/stumble.jpg";
 
-const imgMap = { WENWORK: lumiImg, PONYIN: ponyinImg, AORA: mobileImg, "Q-HADIRIN": desktopImg };
+const imgMap = { WENWORK: lumiImg, PONYIN: ponyinImg, AORA: mobileImg, "Q-HADIRIN": desktopImg, "STUMBLE PUMP": stumbleImg };
 
 function localized(p, key, lang) {
   return lang === "en" && p[key + "_en"] ? p[key + "_en"] : p[key];

@@ -123,6 +123,35 @@ export const projects = [
     modalP3: "Aplikasi ini dikembangkan menggunakan model Waterfall dengan pengujian black-box testing untuk memastikan keandalan sistem. Dirancang sebagai solusi komprehensif, Q-HADIRIN hadir untuk meningkatkan efisiensi dan transparansi manajemen kehadiran di lingkungan kantor, sekolah, maupun instansi pendidikan lainnya.",
     modalP3_en: "The application was developed using the Waterfall model with black-box testing to ensure system reliability. Designed as a comprehensive solution, Q-HADIRIN aims to continuously improve efficiency and transparency of attendance management in offices, schools, and other educational institutions."
   },
+  {
+    id: 4,
+    type: "web",
+    category: "Web3 Game · WebGL",
+    category_en: "Web3 Game · WebGL",
+    title: "STUMBLE PUMP",
+    subtitle: "WebGL Party Royale — Solana Degen Edition",
+    subtitle_en: "WebGL Party Royale — Solana Degen Edition",
+    desc: "Game party royale 3D bergaya Stumble Guys untuk 32 pemain dalam 3 ronde berturut-turut, didandani dengan tema crypto degen Solana. 32 degen masuk, tersisa 1 PUMP KING. Dibangun penuh dari nol dengan Three.js, fisika Rapier3D, rig karakter 100% prosedural, multiplayer real-time via MQTT, dan tokenomics $SP on-chain.",
+    desc_en: "A Stumble Guys-style 3D party royale for 32 players across 3 consecutive rounds, skinned with a Solana crypto degen theme. 32 degens enter, 1 PUMP KING leaves. Built entirely from scratch with Three.js, Rapier3D physics, a 100% procedural character rig, real-time multiplayer via MQTT, and on-chain $SP tokenomics.",
+    tech: ["Three.js", "Rapier3D (WASM)", "Vite", "Cloudflare D1", "MQTT", "WebGL"],
+    year: "2026",
+    client: "Web3 Client",
+    mockupType: "desktop",
+    mockupAccent: "#5FCB88",
+    color: "#0B0E1A",
+    accentColor: "#5FCB88",
+    featured: false,
+    link: "https://stumblepump.fun",
+    achievement: "⚡ 100% Procedural Rig + 32-Player Realtime",
+    achievement_en: "⚡ 100% Procedural Rig + 32-Player Realtime",
+    metrics: ["3D Physics (60Hz)", "4 Themed Maps", "13+ Procedural Skins"],
+    modalP1: "STUMBLE PUMP adalah game party royale kompetitif yang mempertemukan 32 pemain dalam 3 ronde berturut-turut — setiap ronde menyisihkan setengah pemain hingga hanya tersisa satu PUMP KING. Karakternya didandani dengan tema degen Solana: dari skin karikatur tokoh crypto, hingga rintangan bertema trading seperti Red Candle, Sweeper, dan platform yang runtuh saat rugpull. Seluruh rig karakter chibi humanoid dibangun 100% dari kode Three.js tanpa file GLTF eksternal.",
+    modalP1_en: "STUMBLE PUMP is a competitive party royale that pits 32 players against each other across 3 consecutive rounds — each round eliminates half the field until only one PUMP KING remains. The characters are skinned with a Solana degen theme: from caricature skins of crypto figures, to trading-themed obstacles like Red Candles, Sweepers, and platforms that collapse during a rugpull. The entire chibi humanoid rig is built 100% from Three.js code with no external GLTF files.",
+    modalP2: "Secara teknis, game ini berjalan di atas mesin fisika Rapier3D (WASM) dengan fixed-step 60Hz, kapsul kinematik untuk gerakan karakter yang responsif, heightfield terrain untuk presisi pit dan platform, serta sistem ragdoll prosedural saat pemain terkena rintangan. Rendering memakai pendekatan clean bright look — ACES tone mapping, toon shading bertingkat, dan bayangan PCFSoft — tanpa efek neon/bloom demi estetika yang bersih dan jelas.",
+    modalP2_en: "On the technical side, the game runs on the Rapier3D physics engine (WASM) with a fixed 60Hz step, kinematic capsules for responsive character movement, heightfield terrain for precise pits and platforms, and a procedural ragdoll system triggered by obstacle hits. Rendering uses a clean bright look — ACES tone mapping, stepped toon shading, and PCFSoft shadows — without neon/bloom effects for a crisp, clear aesthetic.",
+    modalP3: "Ada empat map dengan tema khas: Bonding Curve Climb, Rugpull Roulette (survival di grid platform yang jatuh), Moon Mission, dan Liquidation Lane. Game ini juga mendukung multiplayer real-time lewat matchmaking MQTT, sistem ekonomi coins & gems untuk unlock skin, serta tokenomics $SP on-chain musiman untuk pemain yang menang. Versi live dapat dimainkan langsung di stumblepump.fun.",
+    modalP3_en: "There are four themed maps: Bonding Curve Climb, Rugpull Roulette (a survival grid of collapsing platforms), Moon Mission, and Liquidation Lane. The game also supports real-time multiplayer through MQTT matchmaking, a coins & gems economy for unlocking skins, and a seasonal on-chain $SP tokenomics for winning players. The live version is playable directly at stumblepump.fun."
+  },
 ];
 
 export const skills = [
