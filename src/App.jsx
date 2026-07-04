@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, lazy, Suspense } from "react";
 import Lenis from "lenis";
 import Loader from "./components/Loader";
 import Cursor from "./components/Cursor";
@@ -10,11 +10,18 @@ import Process from "./pages/Process";
 import Testimonials from "./pages/Testimonials";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
+import { useIsMobile, usePrefersReducedMotion } from "./hooks/useMediaQuery";
 import "./styles/global.css";
+
+// Heavy WebGL scene — lazy-loaded so it never blocks first paint / LCP.
+const Scene3D = lazy(() => import("./three/GlassForms"));
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+  const isMobile = useIsMobile();
+  const reducedMotion = usePrefersReducedMotion();
+  const showScene = loaded && !isMobile && !reducedMotion;
 
   // Smooth scroll
   useEffect(() => {
@@ -49,6 +56,17 @@ export default function App() {
   return (
     <>
       <Loader onDone={() => setLoaded(true)} />
+
+      {/* Persistent WebGL backdrop — monokrom liquid ink + glass shards.
+          Sits behind all content; disabled on mobile / reduced-motion. */}
+      {showScene && (
+        <div className="scene-backdrop" aria-hidden>
+          <Suspense fallback={null}>
+            <Scene3D />
+          </Suspense>
+        </div>
+      )}
+
       <div className="noise-overlay" />
       {loaded && (
         <>

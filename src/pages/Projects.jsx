@@ -3,7 +3,7 @@ import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion"
 import { useRef } from "react";
 import { projects } from "../data";
 import { useLanguage } from "../context/LanguageContext";
-import { Reveal, AnimatedHeading, Magnetic } from "../components/Motion";
+import { Reveal, AnimatedHeading, Magnetic, Tilt3D } from "../components/Motion";
 import BrowserMockup from "../components/BrowserMockup";
 import AndroidMockup from "../components/AndroidMockup";
 
@@ -28,6 +28,7 @@ function ProjectCard({ p, index, onOpen, lang }) {
   const isMobile = p.mockupType === "android";
 
   return (
+    <Tilt3D strength={5} style={{ height: "100%" }}>
     <motion.article
       ref={ref}
       data-cursor data-cursor-label="View"
@@ -37,7 +38,7 @@ function ProjectCard({ p, index, onOpen, lang }) {
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: (index % 3) * 0.08 }}
       whileHover={{ y: -6 }}
-      style={{ cursor: "pointer", borderRadius: 22, overflow: "hidden", background: "var(--card)", border: "1px solid var(--line)", boxShadow: "var(--shadow-sm)", display: "flex", flexDirection: "column" }}
+      style={{ cursor: "pointer", borderRadius: 22, overflow: "hidden", background: "var(--card)", border: "1px solid var(--line)", boxShadow: "var(--shadow-sm)", display: "flex", flexDirection: "column", height: "100%" }}
     >
       <div style={{ position: "relative", overflow: "hidden", aspectRatio: "4/3", background: "var(--paper-2)", display: "flex", alignItems: "center", justifyContent: "center", padding: isMobile ? "26px 0 0" : 26 }}>
         <motion.div style={{ scale: imgScale, width: "100%", maxWidth: isMobile ? 150 : 340, display: "flex", justifyContent: "center" }}>
@@ -57,6 +58,7 @@ function ProjectCard({ p, index, onOpen, lang }) {
         </div>
       </div>
     </motion.article>
+    </Tilt3D>
   );
 }
 

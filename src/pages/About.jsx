@@ -48,18 +48,28 @@ export default function About() {
           <div>
             <Reveal><div style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", letterSpacing: "0.16em", textTransform: "uppercase", color: "var(--ink-mute)", marginBottom: 28 }}>{t("aboutSkills")}</div></Reveal>
             <div style={{ display: "flex", flexDirection: "column", gap: 22 }}>
-              {skills.map((s, i) => (
+              {skills.map((s, i) => {
+                const isAI = s.cat === "AI";
+                return (
                 <motion.div key={s.name} initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 0.6, delay: i * 0.06 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 8 }}>
-                    <span style={{ fontWeight: 600, fontSize: "0.98rem" }}>{s.name} <span style={{ color: "var(--ink-mute)", fontFamily: "var(--font-mono)", fontSize: "0.66rem", textTransform: "uppercase", letterSpacing: "0.08em", marginLeft: 6 }}>{s.cat}</span></span>
+                    <span style={{ fontWeight: 600, fontSize: "0.98rem" }}>{s.name}
+                      <span className={`skill-cat${isAI ? " skill-cat-ai" : ""}`} style={{ color: "var(--ink-mute)", fontFamily: "var(--font-mono)", fontSize: "0.66rem", textTransform: "uppercase", letterSpacing: "0.08em", marginLeft: 6 }}>{isAI ? "✦ " : ""}{s.cat}</span>
+                    </span>
                     <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--ink-soft)" }}>{s.level}%</span>
                   </div>
+                  {s.desc && (
+                    <div style={{ fontFamily: "var(--font-mono)", fontSize: "0.66rem", color: "var(--ink-mute)", marginBottom: 8, lineHeight: 1.5, letterSpacing: "0.01em" }}>{s.desc}</div>
+                  )}
                   <div style={{ height: 6, borderRadius: 6, background: "var(--line)", overflow: "hidden" }}>
                     <motion.div initial={{ width: 0 }} whileInView={{ width: `${s.level}%` }} viewport={{ once: true, amount: 0.6 }} transition={{ duration: 1.1, delay: 0.1 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                      style={{ height: "100%", background: "linear-gradient(90deg, var(--accent), var(--accent-deep))", borderRadius: 6 }} />
+                      style={{ height: "100%", borderRadius: 6, background: isAI
+                        ? "repeating-linear-gradient(90deg, var(--accent) 0 8px, var(--accent-deep) 8px 16px)"
+                        : "linear-gradient(90deg, var(--accent), var(--accent-deep))" }} />
                   </div>
                 </motion.div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>

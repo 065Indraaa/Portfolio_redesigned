@@ -163,6 +163,10 @@ export const skills = [
   { name: "Flutter / Dart", level: 55, cat: "Mobile" },
   { name: "Java / OOP", level: 68, cat: "Desktop" },
   { name: "Solana / Web3.js", level: 62, cat: "Blockchain" },
+  { name: "AI Agent Development", level: 72, cat: "AI", desc: "Tool-use, function calling, multi-step reasoning via LangChain & Vercel AI SDK" },
+  { name: "LLM Automation", level: 76, cat: "AI", desc: "Workflow automation with n8n, Make, Zapier AI to kill repetitive tasks" },
+  { name: "RAG & Chatbot", level: 68, cat: "AI", desc: "Retrieval Augmented Generation, vector DB (Pinecone/Supabase), custom-knowledge bots" },
+  { name: "Prompt Engineering", level: 80, cat: "AI", desc: "System prompts, chain-of-thought, structured output for reliable AI behavior" },
 ];
 
 export const processSteps = [

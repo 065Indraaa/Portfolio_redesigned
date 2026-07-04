@@ -2,9 +2,9 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import ProfilImg from "../assets/Profil.jpg";
 import { useLanguage } from "../context/LanguageContext";
-import { AnimatedHeading, Magnetic, Marquee } from "../components/Motion";
+import { AnimatedHeading, Magnetic, Marquee, Tilt3D } from "../components/Motion";
 
-const tech = ["React", "Next.js", "TypeScript", "React Native", "Node.js", "Flutter", "Solana", "Supabase", "Firebase", "TailwindCSS", "Figma", "Java"];
+const tech = ["React", "Next.js", "TypeScript", "React Native", "Node.js", "Flutter", "Solana", "Supabase", "Firebase", "TailwindCSS", "Figma", "Java", "AI Agents", "LangChain", "n8n", "RAG", "Vector DB"];
 
 export default function Hero() {
   const { t } = useLanguage();
@@ -36,7 +36,7 @@ export default function Hero() {
           </motion.div>
 
           {/* GIANT full-width headline */}
-          <h1 className="display" style={{ fontSize: "clamp(2.9rem, 8vw, 7rem)", margin: 0 }}>
+          <h1 className="display text-3d" style={{ fontSize: "clamp(2.9rem, 8vw, 7rem)", margin: 0 }}>
             <AnimatedHeading
               delay={0.3}
               lines={[
@@ -75,17 +75,19 @@ export default function Hero() {
 
           {/* portrait */}
           <motion.div initial={{ opacity: 0, scale: 0.94 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.5, duration: 1.1, ease: [0.16, 1, 0.3, 1] }} style={{ position: "relative", minWidth: 0 }}>
+            <Tilt3D strength={6} style={{ borderRadius: 22 }}>
             <div className="hero-portrait" style={{ position: "relative", borderRadius: 22, overflow: "hidden", aspectRatio: "4/5", boxShadow: "var(--shadow-lg)", border: "1px solid var(--line)" }}>
               <motion.img src={ProfilImg} alt="Indra Bachtiar Zakaria" style={{ width: "100%", height: "112%", objectFit: "cover", objectPosition: "center top", y: imgY }} />
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.1, duration: 0.7 }}
-                style={{ position: "absolute", left: 14, bottom: 14, display: "flex", alignItems: "center", gap: 9, padding: "10px 16px", borderRadius: 100, background: "rgba(251,249,244,0.82)", backdropFilter: "blur(10px)", border: "1px solid var(--line)", boxShadow: "var(--shadow-sm)" }}>
+                style={{ position: "absolute", left: 14, bottom: 14, display: "flex", alignItems: "center", gap: 9, padding: "10px 16px", borderRadius: 100, background: "rgba(251,249,244,0.82)", backdropFilter: "blur(10px)", border: "1px solid var(--line)", boxShadow: "var(--shadow-sm)", transform: "translateZ(40px)" }}>
                 <span style={{ width: 8, height: 8, borderRadius: "50%", background: "var(--accent)", boxShadow: "0 0 0 4px var(--accent-soft)" }} />
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.66rem", letterSpacing: "0.1em", textTransform: "uppercase" }}>{t("heroBadge")}</span>
               </motion.div>
             </div>
+            </Tilt3D>
             <motion.div initial={{ rotate: -8, opacity: 0 }} animate={{ rotate: -8, opacity: 1 }} transition={{ delay: 1.2, duration: 0.7 }}
               style={{ position: "absolute", top: -16, right: -8, background: "var(--accent)", color: "#fff", fontFamily: "var(--font-mono)", fontSize: "0.64rem", letterSpacing: "0.1em", textTransform: "uppercase", padding: "7px 13px", borderRadius: 8, boxShadow: "var(--shadow-md)" }}>
-              Web · Mobile · Web3
+              Web · Mobile · Web3 · AI
             </motion.div>
           </motion.div>
         </div>

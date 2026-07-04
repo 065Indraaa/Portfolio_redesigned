@@ -84,3 +84,37 @@ export function Marquee({ children, speed = 26, reverse = false, className, styl
     </div>
   );
 }
+
+/* Tilt3D: element leans toward the cursor in 3D space — pairs with .tilt-3d.
+   Uses spring rotation; restores flat on leave. strength = max degrees. */
+export function Tilt3D({ children, strength = 8, className, style, ...rest }) {
+  const ref = useRef(null);
+  const rx = useSpring(0, { stiffness: 200, damping: 18, mass: 0.5 });
+  const ry = useSpring(0, { stiffness: 200, damping: 18, mass: 0.5 });
+  const tx = useSpring(0, { stiffness: 200, damping: 20, mass: 0.5 });
+  const ty = useSpring(0, { stiffness: 200, damping: 20, mass: 0.5 });
+
+  const onMove = (e) => {
+    const r = ref.current.getBoundingClientRect();
+    const px = (e.clientX - r.left) / r.width - 0.5;
+    const py = (e.clientY - r.top) / r.height - 0.5;
+    ry.set(px * strength * 2);
+    rx.set(-py * strength * 2);
+    tx.set(px * 6);
+    ty.set(py * 6);
+  };
+  const onLeave = () => { rx.set(0); ry.set(0); tx.set(0); ty.set(0); };
+
+  return (
+    <motion.div
+      ref={ref}
+      className={`tilt-3d${className ? " " + className : ""}`}
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      style={{ rotateX: rx, rotateY: ry, x: tx, y: ty, ...style }}
+      {...rest}
+    >
+      {children}
+    </motion.div>
+  );
+}

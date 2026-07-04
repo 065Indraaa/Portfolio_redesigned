@@ -16,6 +16,12 @@
   --accent-deep: #16140f;
   --accent-soft: rgba(22, 20, 15, 0.07);
 
+  /* Semi-transparent paper for sections that sit above the 3D backdrop.
+     Keeps text contrast high while letting the glass scene peek through. */
+  --paper-93: rgba(241, 237, 228, 0.93);
+  --paper-88: rgba(241, 237, 228, 0.88);
+  --paper-80: rgba(241, 237, 228, 0.80);
+
   --font-display: 'Syne', sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-ui: 'Syne', sans-serif;
@@ -142,6 +148,17 @@ ul { list-style: none; }
 /* CARD */
 .card { background: var(--card); border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow-sm); }
 
+/* SKILL CATEGORY BADGE — AI skills get a subtle inverse pill to stand out
+   as flagship expertise among the regular tech bars. */
+.skill-cat { transition: color .3s; }
+.skill-cat-ai {
+  padding: 2px 7px;
+  border-radius: 100px;
+  background: var(--ink);
+  color: var(--paper) !important;
+  letter-spacing: 0.1em !important;
+}
+
 @media (max-width: 768px) {
   body { cursor: auto; }
   .cursor-dot, .cursor-ring { display: none !important; }
@@ -164,4 +181,63 @@ ul { list-style: none; }
 #projects article:hover img,
 #testimonials img:hover {
   filter: grayscale(0) contrast(1);
+}
+
+/* ── 3D BACKDROP ──
+   Persistent fixed WebGL canvas behind all content. pointer-events:none so
+   it never intercepts interaction. Sits at z 0; sections above become
+   semi-transparent to let the glass scene breathe through. */
+.scene-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.scene-backdrop canvas { display: block; }
+
+/* Sections peel back to translucent so the 3D scene reads beneath.
+   Hero and dark Testimonials stay opaque/inverse for max impact. */
+#projects.section { background: var(--paper-93); }
+#about.section    { background: var(--paper-88); }
+#process.section  { background: var(--paper-93); }
+#contact.section  { background: var(--paper-93); }
+
+/* ── TYPOGRAPHIC 3D ──
+   Layered ink shadows give the hero headline physical depth without
+   WebGL — stays crisp and refined, never a drop-shadow slop. */
+.text-3d {
+  text-shadow:
+    1px 1px 0 var(--paper-2),
+    2px 2px 0 var(--paper-3),
+    3px 3px 1px rgba(22,20,15,0.04),
+    4px 4px 2px rgba(22,20,15,0.06),
+    6px 6px 8px rgba(22,20,15,0.05);
+}
+
+/* ── 3D TILT ──
+   Wrapper opt-in for cards/portrait that rotate with the cursor. */
+.tilt-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  will-change: transform;
+}
+.tilt-3d > * { transform-style: preserve-3d; }
+
+/* ── REDUCED MOTION ──
+   Strip 3D backdrop and heavy motion for users who ask for it. */
+@media (prefers-reduced-motion: reduce) {
+  .scene-backdrop { display: none; }
+  .text-3d { text-shadow: none; }
+  .tilt-3d { perspective: none; transform: none !important; }
+}
+
+@media (max-width: 768px) {
+  /* 3D backdrop is JS-gated off; ensure sections stay readable if
+     the canvas ever does mount on a small device. */
+  .scene-backdrop { display: none; }
+  #projects.section,
+  #about.section,
+  #process.section,
+  #contact.section { background: var(--paper); }
 }
